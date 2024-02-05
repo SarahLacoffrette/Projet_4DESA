@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <link rel="stylesheet" href="../static/navbar.css">
+    <meta charset="UTF-8">
+    <title>Media</title>
 </head>
 <body>
-$END$
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/createUser">Inscription</a>
+        <a href="/login">Connexion</a>
+        <a href="/media">Médias</a>
+        <a href="/listeUsers">Liste des profiles</a>
+        <a href="/dashboard">Mon profil</a>
+        <a class="active">Ajouter un média</a>
+    </div>
+    <br><br>
+    <h3>Ajouter un media</h3>
+    <form method="POST" action="{{ url_for('media_app.createMedia') }}" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="title"><br>
+        <input type="file" name="file" placeholder="file"><br><br>
+        <input type="submit" name="submit" value="submit">
+    </form>
 </body>
 </html>

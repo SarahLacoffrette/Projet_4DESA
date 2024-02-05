@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/navbar.css">
+    <title>Profile</title>
 </head>
 <body>
-$END$
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/createUser">Inscription</a>
+        <a href="/login">Connexion</a>
+        <a href="/media">Médias</a>
+        <a href="/listeUsers">Liste des profiles</a>
+        <a class="active">Mon profil</a>
+        <a href="/createMedia">Ajouter un média</a>
+    </div>
+    <h3>Vous êtes connecté en tant que {{username}}</h3> <br>
+    <h4>Modifier votre profile</h4> <br>
+    <h3>Inscription</h3>
+    <form method="POST" action="{{ url_for('user_app.updateUser') }}">
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="text" name="name" placeholder="{{name}}"><br>
+        <input type="text" name="firstname" placeholder="{{firstname}}"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" name="register" value="Register">
+    </form><br>
+    <a href="/logout">Se déconnecter</a>
 </body>
 </html>

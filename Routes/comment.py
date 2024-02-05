@@ -1,10 +1,11 @@
-from app import app
-from connectDB import DB
-from flask import jsonify, request
+from Database.connectDB import DB
+from flask import jsonify, request, Blueprint
 
-@app.route('/createComment', methods=['POST'])
+comment_app = Blueprint('comment_app', __name__)
+
+@comment_app.route('/createComment', methods=['POST'])
 def createComment():
-    connection = DB()
+    connection = DB
     with connection.cursor() as cursor:
         sql = "INSERT INTO comment (text, id_user, id_media) VALUES (%(text)s, %(id_user)s, %(id_media)s"
         cursor.execute(sql, request.form)
@@ -14,9 +15,9 @@ def createComment():
         return jsonify(request.form)
 
 
-@app.route('/modifyComment/<id>', methods=['PUT'])
+@comment_app.route('/modifyComment/<id>', methods=['PUT'])
 def modifyComment(id):
-    connection = DB()
+    connection = DB
     with connection.cursor() as cursor:
         sql = "UPDATE comment SET text = %(text)s WHERE id = " + id
         cursor.execute(sql, request.form)
@@ -26,9 +27,9 @@ def modifyComment(id):
         new_form["id"] = cursor.lastrowid
         return jsonify(new_form)
 
-@app.route('/deleteComment/<id>', methods=['DELETE'])
+@comment_app.route('/deleteComment/<id>', methods=['DELETE'])
 def deleteComment(id):
-    connection = DB()
+    connection = DB
     with connection.cursor() as cursor:
         sql = f"DELETE FROM comment WHERE id = {id}"
         cursor.execute(sql, request.form)

@@ -1,59 +1,20 @@
 <!doctype html>
 <html lan=fr>
   <head>
-    <style>
-       
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        .topnav {
-            overflow: hidden;
-            background-color: #333;
-        }
-        
-        .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        
-        .topnav a.active {
-            background-color: #4cacaf;
-            color: white;
-        }
-        .fit-picture {
-            width: 150px;
-        }
-        </style>
-  
+      <link rel="stylesheet" href="../static/navbar.css">
   </head>
   <body>
-    <div>
-    <img class="fit-picture" src="{{img}}">
-    </div>
-    
-
    <div class="topnav">
     <a class="active">Home</a>
-    <a href="/listeAvion">Liste des avions</a>
-    <a href="/listeDepartToday">Départ d'aujourd'hui</a>
-    <a href="/listePilote">Liste Pilote</a>
-    <a href="/listePassager">Liste Passager</a>
-    <a href="/listeProfil">Liste Profil</a>
-    <a href="/billet">Remplir le formulaire</a>
+    <a href="/createUser">Inscription</a>
+    <a href="/login">Connexion</a>
+    <a href="/media">Médias</a>
+    <a href="/listeUsers">Liste des profiles</a>
+    <a href="/dashboard">Mon profil</a>
+    <a href="/createMedia">Ajouter un média</a>
   </div>
    
-  <h1 style="text-align:center;">Bienvenue sur l'interface web de SupAirLine</h1>
+  <h1 style="text-align:center;">Bienvenue sur l'interface web du projet DESA</h1>
   
   </body>
 

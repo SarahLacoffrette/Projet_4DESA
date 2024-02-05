@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/navbar.css">
+    <title>Login</title>
 </head>
 <body>
-$END$
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/createUser">Inscription</a>
+        <a class="active">Connexion</a>
+        <a href="/media">Médias</a>
+        <a href="/listeUsers">Liste des profiles</a>
+        <a href="/dashboard">Mon profil</a>
+        <a href="/createMedia">Ajouter un média</a>
+    </div>
+    <br><br>
+    <h3>Login</h3>
+  <form form method="POST" action="{{ url_for('user_app.login') }}">
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <input type="submit" name="login" value="Login">
+  </form>
 </body>
 </html>

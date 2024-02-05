@@ -1,10 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/navbar.css">
+    <title>Liste Users</title>
 </head>
 <body>
-$END$
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/createUser">Inscription</a>
+        <a href="/login">Connexion</a>
+        <a href="/media">Médias</a>
+        <a class="active">Liste des profiles</a>
+        <a href="/dashboard">Mon profil</a>
+        <a href="/createMedia">Ajouter un média</a>
+    </div>
+
+    <h1 style="text-align:center;">Liste des utilisateurs</h1>
+
+    <table border='1' style="text-align:center; margin: auto">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Etat</th>
+        </tr>
+        {% for x in range (size) %}
+        <tr>
+            <td>{{id[x]}}</td>
+            <td>{{name[x]}}</td>
+            <td>{{firstname[x]}}</td>
+            <td>{{username[x]}}</td>
+            <td>{% if(role[x]) == 1 %}
+                utilisateur
+                {% else %}
+                admin
+                {% endif %}
+            </td>
+            <td>{% if(stateUser[x]) == 1 %}
+                public
+                {% else %}
+                privé
+                {% endif %}
+            </td>
+            <td>
+                <form action="{{ url_for('user_app.deleteUser') }}" method="post">
+                    <input type="hidden" name="user_id" value="{{id[x]}}">
+                    <input type="submit" value="Supprimer">
+                </form>
+           </td>
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
 </body>
 </html>

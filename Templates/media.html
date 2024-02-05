@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/navbar.css">
+    <title>Media</title>
 </head>
 <body>
-$END$
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/createUser">Inscription</a>
+        <a href="/login">Connexion</a>
+        <a class="active">Médias</a>
+        <a href="/listeUsers">Liste des profiles</a>
+        <a href="/dashboard">Mon profil</a>
+        <a href="/createMedia">Ajouter un média</a>
+    </div>
+   <h2>Liste des medias</h2>
+    <table>
+        {% for x in range (size) %}
+            <tr >
+                <h5>{{title[x]}}</h5>
+                <img src="{{ path[x] }}" alt="Image" style="width: 100px; height: 100px;"><br>
+                <a href="{{ path[x] }}" download>Lien pour télécharger l'image</a>
+            </tr>
+        {% endfor %}
+    </table>
+
 </body>
 </html>
