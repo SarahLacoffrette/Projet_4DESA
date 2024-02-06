@@ -140,17 +140,6 @@ def viewUser(id):
         return jsonify(result)
 
 
-@user_app.route('/viewUserByUsername/<username>/<password>', methods=['GET'])
-def viewUserbyusername(username, password):
-    connection = DB
-    with connection.cursor() as cursor:
-        sql = f"SELECT * FROM user WHERE username = '{username}' AND password = '{password}'"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        if(len(result) == 0):
-            return jsonify("no user")
-        else:
-            return jsonify(result)
 @user_app.route('/listeUsers', methods=['GET'])
 def listeUsers():
     if(is_connected()):
@@ -202,5 +191,5 @@ def dashboard():
 @user_app.route('/logout')
 def logout():
     session.pop('username', None)
-    return 'Vous avez été déconnecté. <a href="/login">Se connecter à nouveau</a>'
+    return render_template("home.html")
 

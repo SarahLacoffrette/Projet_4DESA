@@ -1,0 +1,805 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Projet 4DESA",
+      "description": "Développez une plateforme de médias sociaux sans tête à l'aide d'Azure, en vous concentrant sur la création et la gestion de contenu via des API. La plateforme servira de système backend pour les réseaux sociaux, permettant une intégration transparente avec diverses applications frontales.",
+      "version": "1.0.11"
+    },
+    "servers": [
+      {
+        "url": "https://localhost:7000"
+      }
+    ],
+    "tags": [
+      {
+        "name": "user",
+        "description": "Everything about your Pets"
+      },
+      {
+        "name": "media",
+        "description": "Access to Petstore orders"
+      },
+      {
+        "name": "comment",
+        "description": "Operations about user"
+      }
+    ],"paths": {
+        "/createUser": {
+          "post": {
+            "tags": [
+              "user"
+            ],
+            "summary": "Create User",
+            "description": "Create User",
+            "operationId": "createUser",
+            "requestBody": {
+              "description": "Create User in bdd",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }  
+              },
+              "required": true
+            },
+            "responses": {
+              "200": {
+                "description": "Successful operation",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }  
+                }
+              },
+              "404": {
+                "description": "User not created"
+              },
+              "422": {
+                "description": "Validation exception"
+              }
+            }
+          }
+        },
+        "/modifyUser": {
+            "post": {
+              "tags": [
+                "user"
+              ],
+              "summary": "Modify User",
+              "description": "Modify User",
+              "requestBody": {
+                "description": "Modify User",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid input"
+                },
+                "422": {
+                  "description": "Validation exception"
+                }
+              }
+            }
+        },
+        "/deleteUser": {
+            "post": {
+              "tags": [
+                "user"
+              ],
+              "summary": "Delete User",
+              "description": "Delete User",
+              "requestBody": {
+                "description": "Delete User",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid input"
+                },
+                "422": {
+                  "description": "Validation exception"
+                }
+              }
+            }
+        },
+        "/viewUser/<id>": {
+            "get": {
+              "tags": [
+                "user"
+              ],
+              "summary": "Select all info about a specific User",
+              "description": "Select all info about a specific User",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of User",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "requestBody": {
+                "description": "Select all info about a specific User",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid input"
+                },
+                "422": {
+                  "description": "Validation exception"
+                }
+              }
+            }
+        },
+        "/listeUsers": {
+            "get": {
+              "tags": [
+                "user"
+              ],
+              "summary": "Get all Users",
+              "description": "Get all Users",
+              "operationId": "addPet",
+              "requestBody": {
+                "description": "Get all Users",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid input"
+                },
+                "422": {
+                  "description": "Validation exception"
+                }
+              }
+            }
+        },
+        "/login": {
+            "post": {
+              "tags": [
+                "user"
+              ],
+              "summary": "User Connection",
+              "description": "User Connection",
+              "requestBody": {
+                "description": "User Connection",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid input"
+                },
+                "422": {
+                  "description": "Validation exception"
+                }
+              }
+            }
+        },
+        "/getMedia/<filename>": {
+          "get": {
+            "tags": [
+              "media"
+            ],
+            "summary": "Get specific media",
+            "description": "Get specific media",
+            "parameters": [
+              {
+                "name": "filename",
+                "in": "query",
+                "description": "media Filename ",
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": "capture"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Media"
+                      }
+                    }
+                  }  
+                }
+              },
+              "400": {
+                "description": "Invalid status value"
+              }
+            }
+          }
+        },
+        "/createMedia": {
+            "post": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Create media",
+              "description": "Create media",
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        },
+        "/modifyMedia/<id>": {
+            "put": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Modify media",
+              "description": "Modify media",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of media",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        },
+        "/deleteMedia/<id>": {
+            "delete": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Delete media",
+              "description": "Delete media",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of media",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        },
+        "/media": {
+            "get": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Get all media",
+              "description": "Get all media",
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        }, 
+        "/viewMedia/<id>": {
+            "get": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Get a specific media",
+              "description": "Get a specific media",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of media",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        },
+        "/addDownload/<id>": {
+            "get": {
+              "tags": [
+                "media"
+              ],
+              "summary": "Increment value of download",
+              "description": "Increment value of download",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of media",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Media"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                }
+              }
+            }
+        },
+        "/createComment": {
+          "post": {
+            "tags": [
+              "comment"
+            ],
+            "summary": "Create comment",
+            "description": "Create comment",
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Comment"
+                      }
+                    }
+                  }  
+                }
+              },
+              "400": {
+                "description": "Invalid tag value"
+              }
+            }
+          }
+        },
+        "/modifyComment/<id>": {
+            "put": {
+              "tags": [
+                "comment"
+              ],
+              "summary": "FModify comment",
+              "description": "Modify comment",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of comment",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Comment"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid tag value"
+                }
+              }
+            }
+        },
+        "/deleteComment/<id>": {
+            "delete": {
+              "tags": [
+                "comment"
+              ],
+              "summary": "Delete comment",
+              "description": "Delete comment",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "query",
+                  "description": "Id of comment",
+                  "required": true,
+                  "schema": {
+                    "type": "integer",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": "1"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Comment"
+                        }
+                      }
+                    }  
+                  }
+                },
+                "400": {
+                  "description": "Invalid tag value"
+                }
+              }
+            }
+        }
+      },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "example": "Mattéo"
+            },
+            "firstname": {
+              "type": "string",
+              "example": "Broquet"
+            },
+            "username": {
+              "type": "string",
+              "example": "test"
+            },
+            "password": {
+                "type": "string",
+                "example": "mdp"
+            },
+            "stateUser": {
+              "type": "integer",
+              "description": "User privée",
+              "example": 1,
+              "enum": [
+                1,
+                0
+              ]
+            },
+            "role": {
+              "type": "integer",
+              "description": "User admin ?",
+              "example": 1,
+              "enum": [
+                1,
+                0
+              ]
+            }
+          },
+          "xml": {
+            "name": "user"
+          }
+        },
+        "Media": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 100000
+            },
+            "title": {
+              "type": "string",
+              "example": "fehguy"
+            },
+            "path": {
+              "type": "string",
+              "example": "20240201_134910_Capture_decran_2024-02-01_a_10.49.08.png"
+            },
+            "date": {
+                "type": "string",
+                "example": "20240201_142550"
+              },
+            "download": {
+                "type": "integer",
+                "example": 0
+              }
+          },
+          "xml": {
+            "name": "media"
+          }
+        },
+        "Comment": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 10
+            },
+            "id_user": {
+              "type": "integer",
+              "example": 1
+            },
+            "id_media": {
+              "type": "integer",
+              "example": 1
+            },
+            "text": {
+              "type": "string",
+              "example": "Mattéo est le plus fort"
+            }
+          },
+          "xml": {
+            "name": "comment"
+          }
+        },
+        "ApiResponse": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        }
+      },
+      "requestBodies": {
+        "UserArray": {
+          "description": "List of user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "petstore_auth": {
+          "type": "oauth2",
+          "flows": {
+            "implicit": {
+              "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+              "scopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            }
+          }
+        },
+        "api_key": {
+          "type": "apiKey",
+          "name": "api_key",
+          "in": "header"
+        }
+      }
+    }
+  }
