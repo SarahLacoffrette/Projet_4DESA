@@ -32,6 +32,14 @@ def get_role(username):
         result = cursor.fetchall()
         return result[0][0]
 
+def get_user_id(username):
+    connection = DB
+    with connection.cursor() as cursor:
+        sql = f"SELECT id FROM user WHERE username = '{username}'"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        return result[0][0]
+
 def triProfil(result, size):
     id = []
     name = []
@@ -88,7 +96,7 @@ def modifyUser_display():
                 print("size", size)
                 print("result", result)
                 id, name, firstname, username, role, stateUser = triProfil(result, size)
-                return render_template('profile.html', size=size , id=id[0], name=name[0], firstname=firstname[0], username=username[0])
+                return render_template('profile.html', size=size , id=id[0], name=name[0], firstname=firstname[0], username=username[0], role=role[0], stateUser=stateUser[0])
     else :
         return redirect(url_for('user_app.login'))
 
@@ -99,14 +107,16 @@ def updateUser():
     name = request.form['name']
     firstname = request.form['firstname']
     password = request.form['password']
+    stateUser = request.form['stateUser']
 
     with connection.cursor() as cursor:
-        sql = "UPDATE user SET name = %(name)s, firstname = %(firstname)s, password = %(password)s WHERE id = " + id
+        sql = "UPDATE user SET name = %(name)s, firstname = %(firstname)s, password = %(password)s, stateUser = %(stateUser)s WHERE id = " + id
         cursor.execute(sql, {
             'id': id,
             'name': name,
             'firstname': firstname,
-            'password': password
+            'password': password,
+            'stateUser': int(stateUser)
         })
         connection.commit()
         new_form = dict(request.form)
@@ -173,8 +183,9 @@ def login():
     if is_authenticated(username, password):
         session['username'] = username
         session['role'] = get_role(username)
+        session['user_id'] = get_user_id(username)
         print(session)
-        return redirect(url_for('user_app.dashboard'))
+        return redirect(url_for('user_app.modifyUser_display'))
     else:
         return 'Identifiants invalides <a href="/">Accueil</a>'
 

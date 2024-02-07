@@ -28,19 +28,10 @@ def add_blob(file):
 
         print("connected to container")
 
-        # Sécurisez le nom de fichier original
         original_filename = secure_filename(file.filename)
-
-        # Générez un nouveau nom de fichier unique
         new_filename = generate_unique_filename(original_filename)
-
-        # Créez un client pour le conteneur
         container_client = blob_service_client.get_container_client(container_name)
-
-        # Créez ou récupérez le blob dans le conteneur avec le nouveau nom de fichier
         blob_client = container_client.get_blob_client(new_filename)
-
-        # Téléversez le contenu du fichier dans le blob
         blob_client.upload_blob(file)
 
         return new_filename
@@ -59,7 +50,6 @@ def get_blob(file_path):
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=file_path)
 
-    # Générez une URL de pré-signature valide pour 1 heure
     sas_token = generate_blob_sas(
         blob_client.account_name,
         blob_client.container_name,
@@ -69,6 +59,5 @@ def get_blob(file_path):
         expiry=datetime.utcnow() + timedelta(hours=1)
     )
 
-    # Construisez l'URL complète avec le jeton SAS
     blob_url_with_sas = f"{blob_client.url}?{sas_token}"
     return blob_url_with_sas

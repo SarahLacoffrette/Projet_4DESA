@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 05 fév. 2024 à 15:53
+-- Généré le : mer. 07 fév. 2024 à 13:09
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -29,10 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comment` (
   `id` int(5) NOT NULL,
-  `id_user` int(5) NOT NULL,
+  `id_user` int(5) NOT NULL DEFAULT '1',
   `id_media` int(5) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `comment`
+--
+
+INSERT INTO `comment` (`id`, `id_user`, `id_media`, `text`) VALUES
+(1, 1, 1, 'test com'),
+(2, 1, 2, 'Ce commentaire là'),
+(3, 1, 3, 'Hey'),
+(4, 1, 3, 'Hey'),
+(5, 1, 1, 'Commentaire'),
+(6, 1, 1, '1er com');
 
 -- --------------------------------------------------------
 
@@ -131,7 +143,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `media`

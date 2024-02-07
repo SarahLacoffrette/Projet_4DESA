@@ -19,9 +19,26 @@
     <table>
         {% for x in range (size) %}
             <tr >
-                <h5>{{title[x]}}</h5>
-                <img src="{{ path[x] }}" alt="Image" style="width: 100px; height: 100px;"><br>
-                <a href="{{ path[x] }}" download>Lien pour télécharger l'image</a>
+                <td>
+                    <h5>{{title[x]}}</h5>
+                    <img src="{{ path[x] }}" alt="Image" style="width: 100px; height: 100px;"><br>
+                    <a href="{{ path[x] }}" download>Lien pour télécharger l'image</a>
+                </td>
+                <td>
+                    <h5>Commentaires</h5>
+                    <ul>
+                        {% for y in range (size_comment) %}
+                            {% if id_media_comment[y] == id[x] %}
+                                <li>{{text_comment[y]}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <form action="{{url_for('comment_app.createComment')}}" method="post">
+                        <input type="hidden" name="id_media" value="{{id[x]}}">
+                        <input type="text" name="text" placeholder="Votre message ...">
+                        <input type="submit" value="Envoyer">
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

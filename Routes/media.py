@@ -3,6 +3,7 @@ from flask import jsonify, request, Blueprint, render_template, send_file
 from Azure.blob import add_blob, get_blob
 from datetime import datetime
 from azure.storage.blob import generate_blob_sas
+from Routes.comment import getAllComments
 
 media_app = Blueprint('media_app', __name__)
 
@@ -99,11 +100,12 @@ def viewAllMedias():
         result = list(result)
         size = len(result)
         id, title, path = triMedia(result, size)
+        id_comment, text_comment, id_media_comment, size_comment = getAllComments()
         media=[]
         for x in range(0, size):
             media.append(get_blob(path[x]))
 
-        return render_template('media.html', id=id, title=title, path=media, size=size)
+        return render_template('media.html', id=id, title=title, path=media, size=size, id_comment=id_comment, text_comment=text_comment, id_media_comment=id_media_comment, size_comment=size_comment)
 
 
 @media_app.route('/viewMedia/<id>', methods=['GET'])
